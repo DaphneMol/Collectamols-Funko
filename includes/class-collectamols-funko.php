@@ -132,6 +132,16 @@ class Collectamols_Funko {
 		$posttype = new Collectamols_Funko_posttype();
 		$this->loader->add_action( 'init', $posttype, 'register_posttype_funko' );
 
+		/**
+		 * Adding ACF
+		 */
+		if (class_exists('ACF')) {
+			//  The ACF class doesn't exist, so you can probably redefine your functions here
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-collectamols-funko-acf.php';
+			$acf = new Collectamols_Funko_ACF();
+			$this->loader->add_action( 'acf/init', $acf, 'register_acf_funko' );
+		}
+
 	}
 
 	/**
